@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:movie_app_riverpod/features/main/presentation/provider/bottom_navigation_provider/bottom_navigation_provider.dart';
 import 'package:movie_app_riverpod/features/main/presentation/provider/theme_provider/theme_provider.dart';
 
 class MainScreen extends ConsumerWidget {
@@ -9,7 +8,6 @@ class MainScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    log('rebuild');
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -33,24 +31,41 @@ class MainScreen extends ConsumerWidget {
           )
         ],
       ),
-      body: IndexedStack(
-        index: 0,
-        children: [
-          Container(color: Colors.blue),
-          Container(color: Colors.red),
-        ],
+      body: Consumer(
+        builder: (context, widRef, child) {
+          int index = widRef.watch(bottomNavigationProvider);
+          return IndexedStack(
+            index: index,
+            children: [
+              Container(color: Colors.blue),
+              Container(color: Colors.red),
+            ],
+          );
+        },
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.movie),
-            label: 'Movies',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.tv),
-            label: 'TV Show',
-          ),
-        ],
+      bottomNavigationBar: Consumer(
+        builder: (context, widRef, child) {
+          int index = widRef.watch(bottomNavigationProvider);
+          return BottomNavigationBar(
+            currentIndex: index,
+            selectedLabelStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+            onTap: (index) {
+              ref.read(bottomNavigationProvider.notifier).changeTab(index);
+            },
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.movie),
+                label: 'Movies',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.tv),
+                label: 'TV Show',
+              ),
+            ],
+          );
+        },
       ),
     );
   }
