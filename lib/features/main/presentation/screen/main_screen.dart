@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_app_riverpod/features/main/presentation/provider/bottom_navigation_provider/bottom_navigation_provider.dart';
 import 'package:movie_app_riverpod/features/main/presentation/provider/theme_provider/theme_provider.dart';
+import 'package:movie_app_riverpod/features/movies/presentation/screen/movies_screen.dart';
 
 class MainScreen extends ConsumerWidget {
   const MainScreen({super.key});
@@ -37,7 +38,7 @@ class MainScreen extends ConsumerWidget {
           return IndexedStack(
             index: index,
             children: [
-              Container(color: Colors.blue),
+              const MoviesScreen(),
               Container(color: Colors.red),
             ],
           );
