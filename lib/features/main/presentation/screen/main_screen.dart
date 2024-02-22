@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_app_riverpod/features/main/presentation/provider/bottom_navigation_provider/bottom_navigation_provider.dart';
 import 'package:movie_app_riverpod/features/main/presentation/provider/theme_provider/theme_provider.dart';
 import 'package:movie_app_riverpod/features/movies/presentation/screen/movies_screen.dart';
+import 'package:movie_app_riverpod/shared_libraries/utils/setup/app_setup.dart';
 
 class MainScreen extends ConsumerWidget {
   const MainScreen({super.key});
@@ -11,9 +12,7 @@ class MainScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Movie App Riverpod',
-        ),
+        title: Text(Config.appName),
         actions: [
           IconButton(
             onPressed: () {
