@@ -58,6 +58,23 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    flavorDimensions "app"
+
+    productFlavors {
+        dev {
+            dimension "app"
+            resValue "string", "app_name", "Dev Movie App Riverpod"
+            versionNameSuffix "-dev"
+            applicationIdSuffix ".dev"
+            applicationId "com.aldev.movie_app_riverpod"          
+        }
+        prod {
+            dimension "app"
+            resValue "string", "app_name", "Movie App Riverpod" 
+            applicationId "com.aldev.movie_app_riverpod"
+        }
+    }
 }
 
 flutter {

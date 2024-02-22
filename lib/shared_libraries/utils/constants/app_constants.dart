@@ -10,7 +10,8 @@ class AppConstants {
 class App {
   const App();
 
-  String get appName => "Movie App";
+  String get appNameDev => "Dev Movie App Riverpod";
+  String get appNameProd => "Movie App Riverpod";
 
   String get day => 'day';
   String get week => 'week';
@@ -32,7 +33,8 @@ class AppApi {
   const AppApi();
   String get key => '9d1d0ba6ed07c430140ed34dd0684540';
 
-  String get baseUrl => 'https://api.themoviedb.org/3/';
+  String get baseUrlDev => 'https://api.themoviedb.org/3/';
+  String get baseUrlProd => 'https://api.themoviedb.org/3/';
 
   String get movie => 'movie';
   String get topRatedMovie => '$movie/top_rated';

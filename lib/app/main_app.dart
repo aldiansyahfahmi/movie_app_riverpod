@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_app_riverpod/features/main/presentation/provider/theme_provider/theme_provider.dart';
 import 'package:movie_app_riverpod/features/main/presentation/screen/main_screen.dart';
-
-void main() {
-  runApp(const ProviderScope(child: MyApp()));
-}
+import 'package:movie_app_riverpod/shared_libraries/utils/setup/app_setup.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,7 +12,8 @@ class MyApp extends StatelessWidget {
     return Consumer(
       builder: (context, ref, child) {
         return MaterialApp(
-          title: 'Movie App Riverpod',
+          title: Config.appName,
+          debugShowCheckedModeBanner: Config.isDebug,
           theme: ref.watch(themeProvider),
           home: const MainScreen(),
         );
