@@ -7,7 +7,7 @@ part of 'now_playing_provider.dart';
 // **************************************************************************
 
 String _$nowPlayingNotifierHash() =>
-    r'987d711d7672b6f0115770ce32a8ce236426e2f5';
+    r'138d2eeec653313a6249f3919a6ef1a6ec9510cc';
 
 /// See also [NowPlayingNotifier].
 @ProviderFor(NowPlayingNotifier)
