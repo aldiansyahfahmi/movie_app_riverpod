@@ -26,4 +26,15 @@ class MoviesRepositoryImpl implements MoviesRepository {
       return Left(FailureResponse.dio(error));
     }
   }
+
+  @override
+  Future<Either<FailureResponse, List<MovieDataEntity>>> getUpComing() async {
+    try {
+      final response = await moviesRemoteDataSource.getUpComing();
+      return Right(
+          moviesMapper.mapListMoviesDataDtoToEntity(response.results!));
+    } on DioException catch (error) {
+      return Left(FailureResponse.dio(error));
+    }
+  }
 }

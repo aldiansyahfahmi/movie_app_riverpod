@@ -5,4 +5,5 @@ import '../entities/response/movie_response_entity.dart';
 
 abstract class MoviesRepository {
   Future<Either<FailureResponse, List<MovieDataEntity>>> getNowPlaying();
+  Future<Either<FailureResponse, List<MovieDataEntity>>> getUpComing();
 }

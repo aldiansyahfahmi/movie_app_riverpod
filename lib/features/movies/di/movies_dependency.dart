@@ -4,6 +4,7 @@ import 'package:movie_app_riverpod/features/movies/data/mapper/movies_mapper.dar
 import 'package:movie_app_riverpod/features/movies/data/repositories/movies_repository_impl.dart';
 import 'package:movie_app_riverpod/features/movies/domain/repositories/movies_repository.dart';
 import 'package:movie_app_riverpod/features/movies/domain/usecases/get_now_playing_usecase.dart';
+import 'package:movie_app_riverpod/features/movies/domain/usecases/get_up_coming_usecase.dart';
 
 class MoviesDependency {
   MoviesDependency() {
@@ -37,6 +38,11 @@ class MoviesDependency {
   void _registerUseCases() {
     sl.registerLazySingleton<GetNowPlayingUseCase>(
       () => GetNowPlayingUseCase(
+        moviesRepository: sl(),
+      ),
+    );
+    sl.registerLazySingleton<GetUpComingUseCase>(
+      () => GetUpComingUseCase(
         moviesRepository: sl(),
       ),
     );

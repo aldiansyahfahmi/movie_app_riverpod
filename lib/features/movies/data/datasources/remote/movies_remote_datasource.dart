@@ -6,6 +6,7 @@ import '../../models/response/movie_response_dto.dart';
 
 abstract class MoviesRemoteDataSource {
   Future<ApiResponse<List<MovieDataDto>>> getNowPlaying();
+  Future<ApiResponse<List<MovieDataDto>>> getUpComing();
 }
 
 class MoviesRemoteDataSourceImpl implements MoviesRemoteDataSource {
@@ -15,6 +16,23 @@ class MoviesRemoteDataSourceImpl implements MoviesRemoteDataSource {
 
   @override
   Future<ApiResponse<List<MovieDataDto>>> getNowPlaying() async {
+    try {
+      final response = await dio.get(AppConstants.appApi.nowPlayingMovie);
+      return ApiResponse.fromJson(
+        response.data,
+        onDataDeserialized: (json) => List<MovieDataDto>.from(
+          json.map(
+            (x) => MovieDataDto.fromJson(x),
+          ),
+        ),
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<ApiResponse<List<MovieDataDto>>> getUpComing() async {
     try {
       final response = await dio.get(AppConstants.appApi.upcomingMovie);
       return ApiResponse.fromJson(
